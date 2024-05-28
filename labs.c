@@ -3,12 +3,11 @@
 #ifndef LABS_H
 #define LABS_H
 #define MAX_LENGTH 100
-#define N 5
 #define MAXN 100
 #define MAXK 100
 
 
-void swap(char *x, char *y) {
+void swap(int *x, int *y) {
     char temp = *x;
     *x = *y;
     *y = temp;
@@ -195,6 +194,7 @@ int lab3()
 
 int lab4()
 {
+    int N = 5;
     char input[MAX_LENGTH];
     char output[MAX_LENGTH];
     int i = 0, j = 0;
@@ -295,6 +295,7 @@ int laba7() {
 
 int lab4a()
 {
+    int N = 5;
     char input[MAX_LENGTH]; // Ýòè ñòðîêè îáúÿâëÿþò äâà ìàññèâà ñèìâîëîâ input è output, êàæäûé ðàçìåðîì MAX_LENGTH,
     char output[MAX_LENGTH]; //  êîòîðûå áóäóò èñïîëüçîâàòüñÿ äëÿ õðàíåíèÿ âõîäíîé è âûõîäíîé ñòðîêè ñîîòâåòñòâåííî.
     int i = 0, j = 0;
