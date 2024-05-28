@@ -4,6 +4,8 @@
 #define LABS_H
 #define MAX_LENGTH 100
 #define N 5
+#define MAXN 100
+#define MAXK 100
 
 
 void swap(char *x, char *y) {
@@ -12,6 +14,107 @@ void swap(char *x, char *y) {
     *y = temp;
 }
 
+// Функция для нахождения количества значащих бит в числе
+int bit_length(unsigned int n) {
+    int bits = 0;
+    while (n > 0) {
+        bits++;
+        n >>= 1;
+    }
+    return bits;
+}
+
+// Функция для зеркального отражения битов
+unsigned int reverse_bits(unsigned int n) {
+    unsigned int reversed = 0;
+    int bits = bit_length(n);
+
+    for (int i = 0; i < bits; i++) {
+        if (n & (1 << i)) {
+            reversed |= (1 << (bits - 1 - i));
+        }
+    }
+    return reversed;
+}
+
+void printMatrix(int matrix[MAXN][MAXK], int N, int K) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < K; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+int isPalindrome(int row[MAXK], int K) {
+    for (int i = 0; i < K / 2; i++) {
+        if (row[i] != row[K - 1 - i]) {
+            return 0; // not a palindrome
+        }
+    }
+    return 1; // is a palindrome
+}
+
+void zeroRow(int row[MAXK], int K) {
+    for (int i = 0; i < K; i++) {
+        row[i] = 0;
+    }
+}
+
+void processMatrix(int matrix[MAXN][MAXK], int N, int K) {
+    for (int i = 0; i < N; i++) {
+        if (isPalindrome(matrix[i], K)) {
+            zeroRow(matrix[i], K);
+        }
+    }
+}
+
+void shakerSort(int matrix[MAXN][MAXK], int N, int K) {
+    int left = 0;
+    int right = N - 1;
+    int swapped = 1;
+
+    while (left < right && swapped) {
+        swapped = 0;
+
+        // Bubble up
+        for (int i = left; i < right; i++) {
+            for (int j = 0; j < K; j++) {
+                if (matrix[i][j] > matrix[i + 1][j]) {
+                    for (int k = 0; k < K; k++) {
+                        int temp = matrix[i][k];
+                        matrix[i][k] = matrix[i + 1][k];
+                        matrix[i + 1][k] = temp;
+                    }
+                    swapped = 1;
+                    break;
+                } else if (matrix[i][j] < matrix[i + 1][j]) {
+                    break;
+                }
+            }
+        }
+        right--;
+
+        // Bubble down
+        for (int i = right; i > left; i--) {
+            for (int j = 0; j < K; j++) {
+                if (matrix[i][j] < matrix[i - 1][j]) {
+                    for (int k = 0; k < K; k++) {
+                        int temp = matrix[i][k];
+                        matrix[i][k] = matrix[i - 1][k];
+                        matrix[i - 1][k] = temp;
+                    }
+                    swapped = 1;
+                    break;
+                } else if (matrix[i][j] > matrix[i - 1][j]) {
+                    break;
+                }
+            }
+        }
+        left++;
+    }
+}
 
 int lab1()
 
@@ -141,6 +244,52 @@ int lab5()
     }
     printf("\n");
 
+    return 0;
+}
+
+int laba6() {
+    int N, K;
+    int matrix[MAXN][MAXK];
+    
+    // Reading matrix dimensions
+    printf("Enter number of rows (N) and columns (K): ");
+    scanf("%d %d", &N, &K);
+    
+    // Reading the matrix elements
+    printf("Enter the matrix elements:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < K; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    // Print original matrix
+    printf("Original matrix:\n");
+    printMatrix(matrix, N, K);
+    
+    // Process the matrix to zero palindrome rows
+    processMatrix(matrix, N, K);
+    
+    // Print modified matrix
+    printf("Modified matrix:\n");
+    printMatrix(matrix, N, K);
+    
+    // Sort the modified matrix using shaker sort
+    shakerSort(matrix, N, K);
+    
+    // Print sorted matrix
+    printf("Sorted matrix:\n");
+    printMatrix(matrix, N, K);
+    
+    return 0;
+}
+int laba7() {
+    unsigned int N;
+    printf("Введите целое число: ");
+    scanf("%u", &N);
+
+    unsigned int reversed_N = reverse_bits(N);
+    printf("Зеркальное отображение битов: %u\n", reversed_N);
     return 0;
 }
 
