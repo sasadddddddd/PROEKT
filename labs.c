@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "labs.h"
 #ifndef LABS_H
 #define LABS_H
@@ -130,6 +131,7 @@ printf("t2 = ");
 scanf("%f", &t2);
 Vg=(L/t1-L/t2)/2;
 printf("distance = %f\n", Vg);
+system("pause");
 }
 
 int lab2()
@@ -152,7 +154,7 @@ int lab2()
     }
 
     printf("symma pervyx %d elementov rayda: %.2f\n", L, sum); //  âûâîäèì ðåçóëüòàò
-
+    system("pause");
     return 0; // çàâåðøàåì ïðîãðàììó? Îïåðàòîð return çàâåðøàåò âûïîëíåíèå ôóíêöèè è âîçâðàùàåò óïðàâëåíèå âûçûâàþùåé ôóíêöèè.
 }
 
@@ -188,7 +190,7 @@ int lab3()
     }
 
     printf("kolichestvo slov s glasnumi: %d\n", count);
-
+    system("pause");
     return 0;
 }
 
@@ -218,7 +220,7 @@ int lab4()
     output[j] = '\0'; // Äîáàâëÿåì çàâåðøàþùèé íóëåâîé ñèìâîë
 
     printf("Ðåçóëüòàò: %s\n", output);
-
+    system("pause");
     return 0;
 }
 
@@ -243,7 +245,7 @@ int lab5()
         printf("%d ", arr[i]);
     }
     printf("\n");
-
+    system("pause");
     return 0;
 }
 
@@ -280,7 +282,7 @@ int laba6() {
     // Print sorted matrix
     printf("Sorted matrix:\n");
     printMatrix(matrix, N, K);
-    
+    system("pause"); 
     return 0;
 }
 int laba7() {
@@ -290,6 +292,7 @@ int laba7() {
 
     unsigned int reversed_N = reverse_bits(N);
     printf("Зеркальное отображение битов: %u\n", reversed_N);
+    system("pause");
     return 0;
 }
 
@@ -319,7 +322,7 @@ int lab4a()
     output[j] = '\0'; // Äîáàâëÿåì çàâåðøàþùèé íóëåâîé ñèìâîë
 
     printf("Rezultat: %s\n", output);
-
+    system("pause");
     return 0;
 }
 
@@ -338,8 +341,8 @@ int lab5a() {
     for (int i = 0; i < 10; i += 2) {
         swap(&arr[i], &arr[i+1]);
     }
-
     printf("Izmenennyi massiv: %d\n", arr);
+    system("pause");
     return 0;
 }
 #endif
